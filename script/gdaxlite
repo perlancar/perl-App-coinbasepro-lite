@@ -1,0 +1,45 @@
+#!perl
+
+# DATE
+# VERSION
+
+use 5.010001;
+use strict;
+use warnings;
+
+use Perinci::CmdLine::Any;
+
+my $prefix = '/App/gdaxlite/';
+
+Perinci::CmdLine::Any->new(
+    url => $prefix,
+    subcommands => {
+        public  => { url => "${prefix}public", },
+        private => { url => "${prefix}private", },
+    },
+    log => 1,
+)->run;
+
+# ABSTRACT:
+# PODNAME:
+
+=head1 SYNOPSIS
+
+First, create an account at GDAX, create an API then insert the API information
+in F<~/.config/gdaxlite.conf>. Since the configuration file contains sensitive
+information, please make sure that the permission of the file is set so that
+unauthorized users cannot read it (e.g. chmod it to 0600).
+
+ # In ~/.config/gdaxlite.conf
+ key = ...
+ secret = ...
+ passphrase = ...
+
+To perform a public request:
+
+ % gdaxlite public /products
+
+To perform a private request:
+
+ % gdaxlite private /coinbase-accounts
+ % gdaxlite private /reports --arg type=fills --arg start_date=2018-02-01T00:00:00.000Z --arg end_date=2018-02-10T00:00:00.000Z
