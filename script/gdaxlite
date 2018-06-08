@@ -25,7 +25,7 @@ Perinci::CmdLine::Any->new(
 
 =head1 SYNOPSIS
 
-First, create an account at GDAX, create an API then insert the API information
+First, create an account at GDAX. Create an API then insert the API information
 in F<~/.config/gdaxlite.conf>. Since the configuration file contains sensitive
 information, please make sure that the permission of the file is set so that
 unauthorized users cannot read it (e.g. chmod it to 0600).
@@ -37,9 +37,18 @@ unauthorized users cannot read it (e.g. chmod it to 0600).
 
 To perform a public request:
 
+ # list all products (currency pairs or markets)
  % gdaxlite public /products
+
+ # get order book for a product
+ % gdaxlite public /products/BTC-USD/book?level=2
 
 To perform a private request:
 
  % gdaxlite private /coinbase-accounts
  % gdaxlite private /reports --arg type=fills --arg start_date=2018-02-01T00:00:00.000Z --arg end_date=2018-02-10T00:00:00.000Z
+
+
+=head1 SEE ALSO
+
+L<https://docs.gdax.com/>

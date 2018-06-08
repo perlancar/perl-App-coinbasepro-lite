@@ -59,7 +59,13 @@ sub _init {
 
 $SPEC{':package'} = {
     v => 1.1,
-    summary => 'Lite CLI for GDAX',
+    summary => 'Thin CLI for GDAX API',
+    description => <<'_',
+
+This package offers a thin CLI for accessing GDAX API (public or private),
+mainly for debugging/testing.
+
+_
 };
 
 $SPEC{public} = {
