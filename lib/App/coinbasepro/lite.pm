@@ -1,4 +1,4 @@
-package App::gdaxlite;
+package App::coinbasepro::lite;
 
 # DATE
 # VERSION
@@ -44,13 +44,13 @@ my %args_credentials = (
     },
 );
 
-my ($gdaxpub, $gdaxpriv);
+my ($clipub, $clipriv);
 
 sub _init {
-    require Finance::GDAX::Lite;
+    require Finance::CoinbasePro::Lite;
     my ($args) = @_;
-    $gdaxpub  //= Finance::GDAX::Lite->new();
-    $gdaxpriv //= Finance::GDAX::Lite->new(
+    $clipub  //= Finance::CoinbasePro::Lite->new();
+    $clipriv //= Finance::CoinbasePro::Lite->new(
         key        => $args->{key},
         secret     => $args->{secret},
         passphrase => $args->{passphrase},
@@ -59,11 +59,11 @@ sub _init {
 
 $SPEC{':package'} = {
     v => 1.1,
-    summary => 'Thin CLI for GDAX API',
+    summary => 'Thin CLI for Coinbase Pro API',
     description => <<'_',
 
-This package offers a thin CLI for accessing GDAX API (public or private),
-mainly for debugging/testing.
+This package offers a thin CLI for accessing Coinbase Pro API (public or
+private), mainly for debugging/testing.
 
 _
 };
@@ -78,7 +78,7 @@ $SPEC{public} = {
 sub public {
     my %args = @_;
     _init(\%args);
-    $gdaxpub->public_request(
+    $clipub->public_request(
         $args{method},
         $args{endpoint},
         $args{args},
@@ -96,7 +96,7 @@ $SPEC{private} = {
 sub private {
     my %args = @_;
     _init(\%args);
-    $gdaxpriv->private_request(
+    $clipriv->private_request(
         $args{method},
         $args{endpoint},
         $args{args},
@@ -108,9 +108,9 @@ sub private {
 
 =head1 SYNOPSIS
 
-Please see included script L<gdaxlite>.
+Please see included script L<coinbasepro-lite>.
 
 
 =head1 SEE ALSO
 
-L<Finance::GDAX::Lite>
+L<Finance::CoinbasePro::Lite>
